@@ -1,5 +1,5 @@
 class GitTest {
 
-  def foo: Unit = println("foo")
+  def foo: Int = {println("bar"); 10}
 
 }
