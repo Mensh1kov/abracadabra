@@ -17,6 +17,22 @@ object Apply extends MyApp {
   }
 
   val a = new A
+
+  case class Foo(hidden: Boolean, name: String) extends WithHidden {
+    override def unhidden: Foo = this.copy(hidden = false)
+  }
+
+  val qwe = Foo(true, "Foo")
+  val ewq = qwe.unhidden
+
+  println(qwe, ewq)
+
+  trait WithHidden { self =>
+    def hidden: Boolean
+    def unhidden: WithHidden
+  }
+
+
 }
 
 trait MyApp {
