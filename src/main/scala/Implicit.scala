@@ -1,4 +1,4 @@
-object ImplicitBool extends App {
+object Implicit extends App {
 //  sealed trait Bool
 //
 //  case object True extends Bool
@@ -97,15 +97,70 @@ object ImplicitBool extends App {
 //
 //
 ////  `1` == `0` + `1`
+//
+//  implicit val a = 10
+//  implicit val b = "qwe"
+//
+//  implicit class Foo(v: Int)(implicit val a: Int, b: String) {
+//    def foo = v + a + b
+//  }
+//
+//  println(1.foo)
+//
+//  println(List[Int]().exists(_ > 2))
 
-  implicit val a = 10
-  implicit val b = "qwe"
+//  package exercises06.e2_ignore
 
-  implicit class Foo(v: Int)(implicit val a: Int, b: String) {
-    def foo = v + a + b
+  // отбрасывает значения, на которых предикат выдал true
+  trait Ignore[M[_]] {
+    def ignore[A](m: M[A])(f: A => Boolean): M[A]
   }
 
-  println(1.foo)
+  object Ignore {
+    def apply[M[_]: Ignore]: Ignore[M] = implicitly[Ignore[M]]
+  }
 
-  println(List[Int]().exists(_ > 2))
+  object IgnoreInstances {
+    implicit val listIgnore: Ignore[List] = new Ignore[List] {
+      override def ignore[A](m: List[A])(f: A => Boolean): List[A] = m.filterNot(f)
+    }
+
+    implicit val setIgnore: Ignore[Set] = new Ignore[Set] {
+      override def ignore[A](m: Set[A])(f: A => Boolean): Set[A] = m.filterNot(f)
+    }
+
+    implicit val vectorIgnore: Ignore[Vector] = new Ignore[Vector] {
+      override def ignore[A](m: Vector[A])(f: A => Boolean): Vector[A] = m.filterNot(f)
+    }
+
+    implicit val optionIgnore: Ignore[Option] = new Ignore[Option] {
+      override def ignore[A](m: Option[A])(f: A => Boolean): Option[A] = m.filterNot(f)
+    }
+  }
+
+  object IgnoreSyntax {
+    implicit class IgnoreOps[M[_], A](private val m: M[A]) extends AnyVal {
+      def ignore(f: A => Boolean)(implicit inst: Ignore[M]): M[A] = inst.ignore[A](m)(f)
+    }
+  }
+
+  object Examples {
+    import IgnoreInstances._
+    import IgnoreSyntax._
+
+    val list: List[Int]     = List[Int](1, 2, 3, 4, 5).ignore(_ => true)
+    val some: Option[Int]   = Option(2).ignore(_ => true)
+    val none: Option[Int]   = Option.empty[Int].ignore(_ => true)
+    val vector: Vector[Int] = Vector[Int]().ignore(_ => true)
+    val set: Set[Int]       = Set[Int]().ignore(_ => true)
+  }
+
+
+
+  // wow!
+
+  object Implicit
+  def needImplisit(implicit i: Implicit.type): Unit = ()
+
+  Some(Implicit).map(implicit i => needImplisit)
 }

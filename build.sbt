@@ -1,6 +1,8 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "2.13.11"
+ThisBuild / scalaVersion := "2.13.14"
+
+val http4sVersion = "1.0.0-M41"
 
 lazy val root = (project in file("."))
   .settings(
@@ -23,8 +25,26 @@ lazy val root = (project in file("."))
       "org.typelevel"     %% "cats-laws"             % "2.10.0" % Test,
       "org.scalacheck"    %% "scalacheck"            % "1.14.1" % "test",
       "org.typelevel"     %% "discipline-core"       % "1.5.0",
-      "org.scalameta"     %% "munit"                 % "0.7.29" % Test
+      "org.typelevel"     %% "discipline-munit"      % "1.0.9" % Test,
+      "org.scalameta"     %% "munit"                 % "0.7.29" % Test,
+
+      "org.http4s" %% "http4s-ember-client" % http4sVersion,
+      "org.http4s" %% "http4s-ember-server" % http4sVersion,
+      "org.http4s" %% "http4s-dsl" % http4sVersion,
+      "org.typelevel" %% "log4cats-slf4j" % "2.0.0",
+
+      "com.softwaremill.diffx" %% "diffx-core" % "0.5.6",
+      "com.beachape" %% "enumeratum-play-json" % "1.6.1",
+      "com.tethys-json" %% "tethys-core" % "0.28.4",
+      "com.tethys-json" %% "tethys-jackson213" % "0.28.4",
+      "com.tethys-json" %% "tethys-derivation" % "0.28.4",
+      "com.tethys-json" %% "tethys-enumeratum" % "0.28.4"
+
     )
   )
 
+//addCompilerPlugin("org.typelevel" % "kind-projector" % "0.13.2" cross CrossVersion.full)
+
 scalacOptions += "-Ymacro-annotations"
+//ThisBuild / scalacOptions += "-P:kind-projector:underscore-placeholders"
+//ThisBuild / scalacOptions += "-Xfatal-warnings"

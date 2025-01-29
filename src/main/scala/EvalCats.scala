@@ -53,6 +53,15 @@ object EvalCats extends App {
     10
   }
 
+  println("-------------")
 
+  def build: () => String = () => {
+    println("build")
+    "conf"
+  }
 
+  val al = Always(build())
+println("fooo")
+  al.value
+  al.value
 }

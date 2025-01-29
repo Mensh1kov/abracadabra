@@ -1,3 +1,5 @@
+import cats.Monad
+import cats.syntax.all._
 import cats.data.OptionT
 
 import scala.concurrent.Future
@@ -25,6 +27,12 @@ object MonadT extends App {
     v
   }
   println((n(1, false) || n(2, true) && n(3, true)))
+
+
+
+  trait Foo[F[_]] {
+    def kek[A](a: A): F[A]
+  }
 
 
 }

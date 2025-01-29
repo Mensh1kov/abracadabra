@@ -1,3 +1,4 @@
+import cats.implicits.catsSyntaxOptionId
 import io.estatico.newtype.macros.{newsubtype, newtype}
 import io.estatico.newtype.ops._
 
@@ -15,5 +16,15 @@ object NewType extends App {
 
   def f(i: Bar) = ()
   f(Id(Bar()))
+
+
+
+  @newsubtype case class Foo(v: String)
+
+  def foo(str: Option[String]) = ()
+
+  foo(Foo("123").some)
+
+
 
 }

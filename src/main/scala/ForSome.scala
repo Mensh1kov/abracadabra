@@ -7,8 +7,8 @@ object ForSome extends App {
 
   def int2String(i: Int): String = i.toString
 
-  def f(g: _ => _): Unit = ()
-  f(int2String) // нет ошибки
+//  def f(g: _ => _): Unit = ()
+//  f(int2String) // нет ошибки
 
 //  def f2(g: (T => T) forSome {type T}): Unit = ()
 //  f2(int2String) // ошибка

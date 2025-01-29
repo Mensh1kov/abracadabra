@@ -17,6 +17,39 @@ object TaggedType extends App {
   val dog = Dog(id)
 
   println(dog)
+
+
+  type Puk
+  type Puk2
+  type StringPuk = String
+  type OtherStr = String
+  def foo1(a: String @@ Puk) = ()
+  def foo2(a: StringPuk) = ()
+
+  val a: StringPuk = "123"
+  val b: OtherStr = "1234"
+  val c: String @@ Puk = "1234".asInstanceOf[String @@ Puk]
+  val d: String @@ StringPuk = "1234".asInstanceOf[String @@ OtherStr]
+
+  foo1(c)
+  foo2(d)
+
+
+  val gaga = new {
+    val a = 123
+    val b = 123
+  }
+
+  type foo = {
+    val a: Int
+    val c: Int
+  }
+//
+//  trait F00 extends foo {
+//    override val a: Int = 10
+//    override val c: Int = 12
+//  }
+
 //  type @@[A, B] = A with B
 //
 //  implicit class TaggingExtensions[A](val a: A) extends AnyVal {

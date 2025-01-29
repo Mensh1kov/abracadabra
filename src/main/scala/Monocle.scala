@@ -75,6 +75,12 @@ object Monocle extends App {
 //  Person("Boba") match {
 //    case Person(name) => println(name)
 //  }
+  println("===================================")
 
+  case class Dog(name: String)
+
+  val dog = Dog("dog")
+  println(dog, dog.focus(_.name).replace("bar"), dog)
+  val name2DogMap: Map[String, Dog] = Map("Gav" -> Dog("Gav"), "Bob" -> Dog("Bob"))
 
 }

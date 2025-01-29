@@ -83,7 +83,7 @@ object Blocking extends App {
   Thread.sleep(3000)
 }
 
-object A extends App {
+object AAAAA extends App {
   val f = Future {
     println("start")
     Thread.sleep(100)

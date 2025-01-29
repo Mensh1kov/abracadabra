@@ -8,6 +8,7 @@ object TypeBound extends App {
 
   implicit val strToInt: String => Int = _.length
 
+
   def f[A <% Int](a: A): Int = a * 2
   def f2[A](a: A)(implicit aToInt: A => Int): Int = a * 2
 
@@ -15,5 +16,13 @@ object TypeBound extends App {
 
   println(f("123"))
   println(f2("123"))
+
+
+  trait AA
+  trait BB extends AA
+
+  def g[T <: Option[AA]](t: T): Option[AA] = t
+
+  g(Option.empty[BB])
 
 }
