@@ -4,8 +4,14 @@ private class A {
   def wow(): Unit = println("wow")
 }
 
+object B extends App {
+
+
+
+}
+
 private object A {
-  val name = "foo"
+  private val name = "foo"
 
 
 }

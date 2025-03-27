@@ -1,14 +1,21 @@
 package peka
 
-import cats.{Always, MonadThrow}
+import cats.effect.IO
+import cats.{Always, Monad, MonadThrow, Now}
+import enumeratum.EnumEntry.Lowercase
+import enumeratum.{Enum, EnumEntry}
 import monocle.Lens
 import monocle.Monocle.toAppliedFocusOps
 
 import java.security.SecureRandom
-import java.time.{Instant, LocalDate}
+import java.time.{Instant, LocalDate, LocalDateTime}
 import java.util.Random
-import java.util.concurrent.ThreadLocalRandom
+import java.util.concurrent.{Executors, ThreadLocalRandom, TimeUnit}
+import scala.annotation.tailrec
+import scala.collection.immutable.HashMap
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Try
+import scala.util.matching.Regex
 
 //import cats.Applicative
 import cats.syntax.all._
@@ -26,17 +33,41 @@ import cats.syntax.all._
 
 //import java.time.format.DateTimeFormatter
 //import java.util.Optional
-//import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext.Implicits.global
 //import cats.instances.future._
 //import scala.collection.concurrent.Map
 
-//import scala.concurrent.{ExecutionContext, Future}
+
+import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Try
+import scala.Integral.Implicits.infixIntegralOps
 
 
 object Foo extends App {
-  println(List(true, false, true).filter(identity))
-  LocalDate.now()
-  Instant.now()
+  object Gooo
+  object Hooo
+  object Jooo
+
+  implicit class F(val a: Int) extends AnyVal
+
+  val a = new F(1)
+  a.a
+  case class Derevo[T]()
+  def derevo[T]: Derevo[T] = Derevo()
+
+  type And[A, B]
+
+
+
+  def f[A](a: IterableOnce[A]) = a.iterator.foreach(println(_))
+
+
+
+
+  f(List(1, 2, 3))
+  f(Option(1))
+  List
+  def lestDerevo[T]: List[Derevo[_]] = List(derevo[T])
 }
 
 //object Application extends App {

@@ -3,8 +3,6 @@ package PrivateMod.Pac_B
 import PrivateMod.Pac_A.A
 
 object B extends App {
-
-
 //  val a = A.apply
 //  a.wow()
 

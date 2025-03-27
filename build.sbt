@@ -38,12 +38,20 @@ lazy val root = (project in file("."))
       "com.tethys-json" %% "tethys-core" % "0.28.4",
       "com.tethys-json" %% "tethys-jackson213" % "0.28.4",
       "com.tethys-json" %% "tethys-derivation" % "0.28.4",
-      "com.tethys-json" %% "tethys-enumeratum" % "0.28.4"
+      "com.tethys-json" %% "tethys-enumeratum" % "0.28.4",
+
+      "org.antlr" % "antlr4" % "4.13.0",
+
+      "com.beachape" %% "enumeratum" % "1.6.1",
+      "com.beachape" %% "enumeratum-cats" % "1.6.1",
+      "com.47deg" %% "fetch" % "3.1.2"
+
 
     )
   )
 
 //addCompilerPlugin("org.typelevel" % "kind-projector" % "0.13.2" cross CrossVersion.full)
+addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1")
 
 scalacOptions += "-Ymacro-annotations"
 //ThisBuild / scalacOptions += "-P:kind-projector:underscore-placeholders"
