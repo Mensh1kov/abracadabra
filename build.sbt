@@ -44,9 +44,13 @@ lazy val root = (project in file("."))
 
       "com.beachape" %% "enumeratum" % "1.6.1",
       "com.beachape" %% "enumeratum-cats" % "1.6.1",
-      "com.47deg" %% "fetch" % "3.1.2"
+      "com.47deg" %% "fetch" % "3.1.2",
+      "com.github.blemale"  %% "scaffeine"           % "3.1.0",
 
-
+      "org.tpolecat" %% "doobie-core" % "1.0.0-RC2",       // Основной модуль
+      "org.tpolecat" %% "doobie-hikari" % "1.0.0-RC2",     // Для работы с HikariCP
+      "org.tpolecat" %% "doobie-postgres" % "1.0.0-RC2",   // Для PostgreSQL (или другой драйвер)
+      "org.tpolecat" %% "doobie-scalatest" % "1.0.0-RC2" % Test // Для тестов
     )
   )
 
